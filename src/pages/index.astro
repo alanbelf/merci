@@ -1,0 +1,148 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site, tourismServices, expatServices, testimonials } from '../data/site';
+
+const photos = [
+  'photo-1539650116574-75c0c6d73f6e',
+  'photo-1518684079-3c830dcdn5c3',
+  'photo-1512632578888-169bbbc64f33'
+];
+const image = (id: string, width = 1200) =>
+  `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${width}&q=85`;
+---
+<BaseLayout title="Merci Concierge | Your life in Qatar, made effortless" description={site.intro}>
+  <header class="topbar">
+    <a class="wordmark" href="#top">merci<span>.</span></a>
+    <nav aria-label="Main navigation">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#relocation">Relocation</a>
+      <a class="nav-cta" href="#contact">Get in touch</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-image" role="img" aria-label="Qatar landscape">
+        <img src={image(photos[0], 2000)} alt="A view of Qatar" fetchpriority="high" />
+      </div>
+      <div class="hero-shade"></div>
+      <div class="hero-content">
+        <p class="eyebrow">YOUR PERSONAL CONCIERGE IN QATAR</p>
+        <h1>Your life in Qatar,<br /><em>made effortless.</em></h1>
+        <p class="hero-copy">{site.intro}</p>
+        <a class="button button-light" href="#contact">Let's make it happen <span>↗</span></a>
+      </div>
+      <div class="hero-note">DOHA · QATAR</div>
+    </section>
+
+    <section class="intro section" id="about">
+      <div class="section-label">01 / A PERSONAL APPROACH</div>
+      <div>
+        <p class="eyebrow">MORE THAN A SERVICE</p>
+        <h2>A little local knowledge.<br /><em>A lot more peace of mind.</em></h2>
+        <p class="lead">Whether you're visiting Qatar or building a new life here, the right support makes all the difference.</p>
+        <p>Merci Concierge offers personal assistance, thoughtful recommendations and local guidance. Every request starts with a conversation, so the support you receive reflects what you actually need.</p>
+      </div>
+    </section>
+
+    <section class="services section" id="services">
+      <div class="section-heading">
+        <div>
+          <div class="section-label">02 / EXPLORE WITH CONFIDENCE</div>
+          <p class="eyebrow">FOR VISITORS & CURIOUS MINDS</p>
+          <h2>Discover Qatar<br /><em>your way.</em></h2>
+        </div>
+        <p class="section-aside">From the first idea to the little details, enjoy a more personal way to experience the country.</p>
+      </div>
+      <div class="service-grid">
+        {tourismServices.map((service, i) => (
+          <article class="service-card">
+            <span class="service-number">0{i + 1}</span>
+            <h3>{service.title}</h3>
+            <p>{service.description}</p>
+            <a href="#contact" aria-label={`Ask about ${service.title}`}>↗</a>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="image-band">
+      <img src={image(photos[1], 1800)} alt="Architecture and atmosphere in Qatar" loading="lazy" />
+      <div class="image-caption">A different perspective on Qatar.</div>
+    </section>
+
+    <section class="relocation section" id="relocation">
+      <div class="relocation-visual">
+        <img src={image(photos[2], 1200)} alt="Doha city and waterfront" loading="lazy" />
+        <div class="visual-caption">FEEL AT HOME, FASTER.</div>
+      </div>
+      <div class="relocation-copy">
+        <div class="section-label">03 / A NEW CHAPTER</div>
+        <p class="eyebrow">FOR THOSE MAKING QATAR HOME</p>
+        <h2>New beginnings<br /><em>feel better supported.</em></h2>
+        <p>Moving to a new country comes with a thousand little questions. Get practical local guidance and a friendly helping hand as you find your feet in Qatar.</p>
+        <div class="simple-list">
+          {expatServices.map((service) => (
+            <div class="simple-item">
+              <div><h3>{service.title}</h3><p>{service.description}</p></div>
+              <span>↗</span>
+            </div>
+          ))}
+        </div>
+        <a class="text-link" href="#contact">Tell us what you need <span>↗</span></a>
+      </div>
+    </section>
+
+    <section class="promise section">
+      <div class="section-label">04 / THE MERCI DIFFERENCE</div>
+      <div>
+        <p class="eyebrow">PERSONAL BY NATURE</p>
+        <h2>Thoughtful details.<br /><em>Human connection.</em></h2>
+        <div class="promise-grid">
+          <div><span>01</span><h3>Personal attention</h3><p>No one-size-fits-all approach. Your needs come first.</p></div>
+          <div><span>02</span><h3>Local perspective</h3><p>Useful insight to help you make informed choices.</p></div>
+          <div><span>03</span><h3>Care in the details</h3><p>Considered support from the first conversation onwards.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="testimonials section">
+      <div class="section-label">05 / KIND WORDS</div>
+      <div class="testimonial-content">
+        <p class="eyebrow">THE EXPERIENCE MATTERS</p>
+        <h2>A few words<br /><em>from our clients.</em></h2>
+        <div class="quotes">
+          {testimonials.map((item) => (
+            <blockquote>
+              <span class="quote-mark">“</span>
+              <p>{item.quote}</p>
+              <cite>{item.author}</cite>
+            </blockquote>
+          ))}
+        </div>
+        <p class="small-note">Replace these placeholders with client-approved testimonials before launch.</p>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="contact-inner">
+        <p class="eyebrow">LET'S START WITH A CONVERSATION</p>
+        <h2>How can we make<br /><em>life easier?</em></h2>
+        <p>Tell us a little about what you have in mind. We'll take it from there.</p>
+        <a class="button button-light" href={`mailto:${site.email}`}>Get in touch <span>↗</span></a>
+        <div class="contact-details">
+          <div><span>EMAIL</span><a href={`mailto:${site.email}`}>{site.email}</a></div>
+          <div><span>PHONE</span><a href={`tel:${site.phone.replaceAll(' ', '')}`}>{site.phone}</a></div>
+          <div><span>BASED IN</span><p>{site.location}</p></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="wordmark" href="#top">merci<span>.</span></a>
+    <p>Thoughtful concierge services in Qatar.</p>
+    <p>© {new Date().getFullYear()} Merci Concierge</p>
+  </footer>
+</BaseLayout>

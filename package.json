@@ -1,0 +1,24 @@
+{
+  "name": "merci-concierge",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "check:all": "npm run check && npm run build",
+    "preview:open": "bash scripts/preview-open.sh",
+    "approve": "bash scripts/approve.sh",
+    "publish": "bash scripts/publish.sh",
+    "rollback": "bash scripts/rollback.sh"
+  },
+  "dependencies": {
+    "astro": "^5.14.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "typescript": "^5.9.0"
+  }
+}
