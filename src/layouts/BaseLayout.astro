@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { site } from '../data/site';
 const { title = 'Merci Concierge | Qatar', description = 'Personal concierge services in Qatar.' } = Astro.props;
 ---
 <!doctype html>
@@ -9,6 +10,14 @@ const { title = 'Merci Concierge | Qatar', description = 'Personal concierge ser
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <meta name="theme-color" content="#172323" />
+    <script is:inline>
+      try {
+        const savedTheme = localStorage.getItem('merci-theme');
+        document.documentElement.dataset.theme = savedTheme === 'midnight' ? 'midnight' : 'ivory';
+      } catch {
+        document.documentElement.dataset.theme = 'ivory';
+      }
+    </script>
     <title>{title}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -16,5 +25,33 @@ const { title = 'Merci Concierge | Qatar', description = 'Personal concierge ser
   </head>
   <body>
     <slot />
+    <div class="mobile-contact-bar" aria-label="Contact Merci Concierge">
+      <a href={site.whatsappUrl} target="_blank" rel="noopener noreferrer" aria-label="Message Merci Concierge on WhatsApp">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.6 4.1 1.6 5.9L0 24l6.5-1.7a11.8 11.8 0 0 0 5.6 1.4h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.2-1.2-6.1-3.5-8.4ZM12.1 21.7c-1.7 0-3.4-.5-4.8-1.3l-.3-.2-3.9 1 1-3.8-.2-.3a9.8 9.8 0 1 1 8.2 4.6Zm5.4-7.3c-.3-.2-1.7-.9-2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7.1a8 8 0 0 1-2.4-1.5 9 9 0 0 1-1.7-2.1c-.2-.3 0-.5.1-.7l.5-.6.3-.5c.1-.2 0-.4 0-.6l-.9-2.1c-.2-.5-.5-.4-.7-.4h-.6c-.2 0-.6.1-.9.4s-1.2 1.2-1.2 2.8 1.2 3.2 1.4 3.4c.2.2 2.4 3.7 5.8 5 .8.3 1.4.5 1.9.6.8.2 1.5.2 2 .1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4s-.2-.3-.5-.4Z"/></svg>
+        <span>WhatsApp</span>
+      </a>
+      <a href={site.phoneLink} aria-label="Call Merci Concierge">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.2c1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6a1 1 0 0 1-.2 1l-2.3 2.2Z"/></svg>
+        <span>Call</span>
+      </a>
+    </div>
+    <a class="whatsapp-float" href={site.whatsappUrl} target="_blank" rel="noopener noreferrer" aria-label="Message Merci Concierge on WhatsApp">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.6 4.1 1.6 5.9L0 24l6.5-1.7a11.8 11.8 0 0 0 5.6 1.4h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.2-1.2-6.1-3.5-8.4ZM12.1 21.7c-1.7 0-3.4-.5-4.8-1.3l-.3-.2-3.9 1 1-3.8-.2-.3a9.8 9.8 0 1 1 8.2 4.6Zm5.4-7.3c-.3-.2-1.7-.9-2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7.1a8 8 0 0 1-2.4-1.5 9 9 0 0 1-1.7-2.1c-.2-.3 0-.5.1-.7l.5-.6.3-.5c.1-.2 0-.4 0-.6l-.9-2.1c-.2-.5-.5-.4-.7-.4h-.6c-.2 0-.6.1-.9.4s-1.2 1.2-1.2 2.8 1.2 3.2 1.4 3.4c.2.2 2.4 3.7 5.8 5 .8.3 1.4.5 1.9.6.8.2 1.5.2 2 .1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4s-.2-.3-.5-.4Z"/></svg>
+    </a>
+    <script is:inline>
+      const themeButtons = document.querySelectorAll('[data-set-theme]');
+      const setTheme = (theme, save = true) => {
+        document.documentElement.dataset.theme = theme;
+        themeButtons.forEach((button) => {
+          const selected = button.dataset.setTheme === theme;
+          button.setAttribute('aria-pressed', String(selected));
+        });
+        if (save) {
+          try { localStorage.setItem('merci-theme', theme); } catch {}
+        }
+      };
+      themeButtons.forEach((button) => button.addEventListener('click', () => setTheme(button.dataset.setTheme)));
+      setTheme(document.documentElement.dataset.theme || 'ivory', false);
+    </script>
   </body>
 </html>

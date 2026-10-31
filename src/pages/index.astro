@@ -17,7 +17,11 @@ const image = (id: string, width = 1200) =>
       <a href="#about">About</a>
       <a href="#services">Services</a>
       <a href="#relocation">Relocation</a>
-      <a class="nav-cta" href="#contact">Get in touch</a>
+      <div class="theme-switcher" role="group" aria-label="Choose colour theme">
+        <button type="button" data-set-theme="ivory" aria-pressed="true" aria-label="Use Warm Ivory theme" title="Warm Ivory">☼ <span>Warm Ivory</span></button>
+        <button type="button" data-set-theme="midnight" aria-pressed="false" aria-label="Use Midnight Doha theme" title="Midnight Doha">☾ <span>Midnight Doha</span></button>
+      </div>
+      <a class="nav-cta" href={site.whatsappUrl} target="_blank" rel="noopener noreferrer">Get in touch</a>
     </nav>
   </header>
 
@@ -31,7 +35,7 @@ const image = (id: string, width = 1200) =>
         <p class="eyebrow">YOUR PERSONAL CONCIERGE IN QATAR</p>
         <h1>Your life in Qatar,<br /><em>made effortless.</em></h1>
         <p class="hero-copy">{site.intro}</p>
-        <a class="button button-light" href="#contact">Let's make it happen <span>↗</span></a>
+        <a class="button button-light" href={site.whatsappUrl} target="_blank" rel="noopener noreferrer">Let's make it happen <span>↗</span></a>
       </div>
       <div class="hero-note">DOHA · QATAR</div>
     </section>
@@ -112,16 +116,20 @@ const image = (id: string, width = 1200) =>
       <div class="testimonial-content">
         <p class="eyebrow">THE EXPERIENCE MATTERS</p>
         <h2>A few words<br /><em>from our clients.</em></h2>
-        <div class="quotes">
-          {testimonials.map((item) => (
-            <blockquote>
-              <span class="quote-mark">“</span>
-              <p>{item.quote}</p>
-              <cite>{item.author}</cite>
-            </blockquote>
-          ))}
-        </div>
-        <p class="small-note">Replace these placeholders with client-approved testimonials before launch.</p>
+        {testimonials.length > 0 ? (
+          <div class="quotes">
+            {testimonials.map((item) => (
+              <blockquote>
+                <span class="quote-mark">“</span>
+                <p>{item.quote}</p>
+                <cite>{item.author}</cite>
+                {item.url && <a class="review-link" href={item.url} target="_blank" rel="noopener noreferrer">View original review ↗</a>}
+              </blockquote>
+            ))}
+          </div>
+        ) : (
+          <p class="small-note">Client reviews will be shared here once the original review text is available.</p>
+        )}
       </div>
     </section>
 
@@ -130,10 +138,10 @@ const image = (id: string, width = 1200) =>
         <p class="eyebrow">LET'S START WITH A CONVERSATION</p>
         <h2>How can we make<br /><em>life easier?</em></h2>
         <p>Tell us a little about what you have in mind. We'll take it from there.</p>
-        <a class="button button-light" href={`mailto:${site.email}`}>Get in touch <span>↗</span></a>
+        <a class="button button-light" href={site.whatsappUrl} target="_blank" rel="noopener noreferrer">Message us on WhatsApp <span>↗</span></a>
         <div class="contact-details">
-          <div><span>EMAIL</span><a href={`mailto:${site.email}`}>{site.email}</a></div>
-          <div><span>PHONE</span><a href={`tel:${site.phone.replaceAll(' ', '')}`}>{site.phone}</a></div>
+          <div><span>WHATSAPP</span><a href={site.whatsappUrl} target="_blank" rel="noopener noreferrer">{site.phone}</a></div>
+          <div><span>CALL</span><a href={site.phoneLink}>{site.phone}</a></div>
           <div><span>BASED IN</span><p>{site.location}</p></div>
         </div>
       </div>

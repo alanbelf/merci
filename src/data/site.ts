@@ -1,13 +1,17 @@
+const whatsapp = '97466997487';
+const whatsappMessage = "Hello Merci Concierge! I'd like to enquire about your services.";
+const phone = '+974 6699 7487';
+
 export const site = {
   name: 'Merci Concierge',
   tagline: 'Your life in Qatar, made effortless.',
   intro: 'A personal concierge service helping you discover Qatar, settle in with confidence, and enjoy more of what matters.',
-  phone: '+974 XX XXX XXXX',
-  email: 'hello@example.com',
+  phone,
+  phoneLink: `tel:${phone.replaceAll(' ', '')}`,
+  whatsapp,
+  whatsappMessage,
+  whatsappUrl: `https://wa.me/${whatsapp}?text=${encodeURIComponent(whatsappMessage).replaceAll("'", '%27')}`,
   location: 'Doha, Qatar',
-  instagram: 'https://www.instagram.com/',
-  googleRating: '5.0',
-  reviewCount: '15+',
 };
 
 export const tourismServices = [
@@ -48,17 +52,5 @@ export const expatServices = [
   }
 ];
 
-export const testimonials = [
-  {
-    quote: 'Add an approved client testimonial here.',
-    author: 'Client testimonial'
-  },
-  {
-    quote: 'Add another approved client testimonial here.',
-    author: 'Client testimonial'
-  },
-  {
-    quote: 'Add a third approved client testimonial here.',
-    author: 'Client testimonial'
-  }
-];
+// Genuine review wording and reviewer details must come from the owner-supplied brief.
+export const testimonials: { quote: string; author: string; url?: string }[] = [];
