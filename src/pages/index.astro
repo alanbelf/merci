@@ -39,8 +39,8 @@ import coastalImage from '../assets/coastal-luxury.jpg';
     </section>
 
     <section class="intro section" id="about">
-      <div class="section-label">01 / A PERSONAL APPROACH</div>
-      <div>
+      <div class="section-label" data-reveal>01 / A PERSONAL APPROACH</div>
+      <div data-reveal>
         <p class="eyebrow">MORE THAN A SERVICE</p>
         <h2>A little local knowledge.<br /><em>A lot more peace of mind.</em></h2>
         <p class="lead">Whether you're visiting Qatar or building a new life here, the right support makes all the difference.</p>
@@ -50,16 +50,16 @@ import coastalImage from '../assets/coastal-luxury.jpg';
 
     <section class="services section" id="services">
       <div class="section-heading">
-        <div>
+        <div data-reveal>
           <div class="section-label">02 / EXPLORE WITH CONFIDENCE</div>
           <p class="eyebrow">FOR VISITORS & CURIOUS MINDS</p>
           <h2>Discover Qatar<br /><em>your way.</em></h2>
         </div>
-        <p class="section-aside">From the first idea to the little details, enjoy a more personal way to experience the country.</p>
+        <p class="section-aside" data-reveal>From the first idea to the little details, enjoy a more personal way to experience the country.</p>
       </div>
       <div class="service-grid">
         {tourismServices.map((service, i) => (
-          <article class="service-card">
+          <article class="service-card" data-reveal data-reveal-delay={Math.min(i, 3)}>
             <span class="service-number">0{i + 1}</span>
             <h3>{service.title}</h3>
             <p>{service.description}</p>
@@ -68,20 +68,20 @@ import coastalImage from '../assets/coastal-luxury.jpg';
         ))}
       </div>
       <div class="experience-gallery">
-        <div class="experience-gallery-heading">
+        <div class="experience-gallery-heading" data-reveal>
           <p class="eyebrow">A CLOSER LOOK AT QATAR</p>
           <h3>Places and moments<br /><em>to remember.</em></h3>
         </div>
         <div class="experience-gallery-grid">
-          <figure>
+          <figure data-reveal data-reveal-delay="0">
             <img src={desertImage.src} alt="Golden dunes meet the Inland Sea at sunset, with a 4x4 on the ridge" loading="lazy" />
             <figcaption>The Inland Sea</figcaption>
           </figure>
-          <figure>
+          <figure data-reveal data-reveal-delay="1">
             <img src={hospitalityImage.src} alt="A warmly lit desert majlis at dusk, arranged with cushions and a traditional coffee service" loading="lazy" />
             <figcaption>A desert welcome</figcaption>
           </figure>
-          <figure>
+          <figure data-reveal data-reveal-delay="2">
             <img src={coastalImage.src} alt="A yacht deck overlooking Doha's illuminated skyline at twilight" loading="lazy" />
             <figcaption>Doha by water</figcaption>
           </figure>
@@ -89,17 +89,17 @@ import coastalImage from '../assets/coastal-luxury.jpg';
       </div>
     </section>
 
-    <section class="image-band">
+    <section class="image-band" data-reveal>
       <img src={dohaImage.src} alt="Traditional Souq Waqif architecture and lanterns at early evening, with Doha's skyline beyond" loading="lazy" />
       <div class="image-caption">Souq Waqif, as evening settles.</div>
     </section>
 
     <section class="relocation section" id="relocation">
-      <div class="relocation-visual">
+      <div class="relocation-visual" data-reveal>
         <img src={homeImage.src} alt="A warm, contemporary Doha apartment overlooking the city at sunset" loading="lazy" />
         <div class="visual-caption">FEEL AT HOME, FASTER.</div>
       </div>
-      <div class="relocation-copy">
+      <div class="relocation-copy" data-reveal>
         <div class="section-label">03 / A NEW CHAPTER</div>
         <p class="eyebrow">FOR THOSE MAKING QATAR HOME</p>
         <h2>New beginnings<br /><em>feel better supported.</em></h2>
@@ -117,21 +117,21 @@ import coastalImage from '../assets/coastal-luxury.jpg';
     </section>
 
     <section class="promise section">
-      <div class="section-label">04 / THE MERCI DIFFERENCE</div>
-      <div>
+      <div class="section-label" data-reveal>04 / THE MERCI DIFFERENCE</div>
+      <div data-reveal>
         <p class="eyebrow">PERSONAL BY NATURE</p>
         <h2>Thoughtful details.<br /><em>Human connection.</em></h2>
         <div class="promise-grid">
-          <div><span>01</span><h3>Personal attention</h3><p>No one-size-fits-all approach. Your needs come first.</p></div>
-          <div><span>02</span><h3>Local perspective</h3><p>Useful insight to help you make informed choices.</p></div>
-          <div><span>03</span><h3>Care in the details</h3><p>Considered support from the first conversation onwards.</p></div>
+          <div data-reveal data-reveal-delay="0"><span>01</span><h3>Personal attention</h3><p>No one-size-fits-all approach. Your needs come first.</p></div>
+          <div data-reveal data-reveal-delay="1"><span>02</span><h3>Local perspective</h3><p>Useful insight to help you make informed choices.</p></div>
+          <div data-reveal data-reveal-delay="2"><span>03</span><h3>Care in the details</h3><p>Considered support from the first conversation onwards.</p></div>
         </div>
       </div>
     </section>
 
     <section class="testimonials section">
-      <div class="section-label">05 / KIND WORDS</div>
-      <div class="testimonial-content">
+      <div class="section-label" data-reveal>05 / KIND WORDS</div>
+      <div class="testimonial-content" data-reveal>
         <p class="eyebrow">THE EXPERIENCE MATTERS</p>
         <h2>A few words<br /><em>from our clients.</em></h2>
         {testimonials.length > 0 ? (
@@ -152,7 +152,7 @@ import coastalImage from '../assets/coastal-luxury.jpg';
     </section>
 
     <section class="contact" id="contact">
-      <div class="contact-inner">
+      <div class="contact-inner" data-reveal>
         <p class="eyebrow">LET'S START WITH A CONVERSATION</p>
         <h2>How can we make<br /><em>life easier?</em></h2>
         <p>Tell us a little about what you have in mind. We'll take it from there.</p>

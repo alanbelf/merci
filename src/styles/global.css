@@ -114,6 +114,11 @@ blockquote cite, .review-link { color: var(--muted); font-size: .7rem; font-styl
 .small-note { color: var(--muted); font-size: .82rem; line-height: 1.7; margin-top: 25px; }
 .contact { background: var(--contact-bg); color: var(--contact-text); padding: 110px 12vw 70px; transition: background-color .25s ease, color .25s ease; }
 .contact-inner { max-width: 900px; margin: auto; }
+.has-reveal [data-reveal] { opacity: 0; transform: translateY(16px); transition: opacity .65s ease, transform .65s cubic-bezier(.2,.65,.3,1); }
+.has-reveal [data-reveal].is-visible, .has-reveal [data-reveal]:focus-within { opacity: 1; transform: translateY(0); }
+.has-reveal [data-reveal-delay="1"] { transition-delay: 75ms; }
+.has-reveal [data-reveal-delay="2"] { transition-delay: 150ms; }
+.has-reveal [data-reveal-delay="3"] { transition-delay: 225ms; }
 .contact .eyebrow { color: var(--gold); }
 .contact h2 { font-size: clamp(3.5rem, 7vw, 6rem); }
 .contact-inner > p:not(.eyebrow) { color: var(--contact-muted); max-width: 430px; line-height: 1.8; }
@@ -173,4 +178,5 @@ footer p { color: var(--muted); font-size: .7rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+  .has-reveal [data-reveal], .has-reveal [data-reveal].is-visible { opacity: 1; transform: none; transition: none; }
 }

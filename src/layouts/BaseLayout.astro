@@ -52,6 +52,33 @@ const { title = 'Merci Concierge | Qatar', description = 'Personal concierge ser
       };
       themeButtons.forEach((button) => button.addEventListener('click', () => setTheme(button.dataset.setTheme)));
       setTheme(document.documentElement.dataset.theme || 'ivory', false);
+
+      let revealObserver;
+      const initScrollReveals = () => {
+        revealObserver?.disconnect();
+        if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          document.documentElement.classList.remove('has-reveal');
+          return;
+        }
+
+        const revealTargets = document.querySelectorAll('[data-reveal]:not(.is-visible)');
+        if (!revealTargets.length) return;
+
+        revealObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -32px 0px' });
+
+        document.documentElement.classList.add('has-reveal');
+        revealTargets.forEach((target) => revealObserver.observe(target));
+      };
+
+      initScrollReveals();
+      document.addEventListener('astro:page-load', initScrollReveals);
     </script>
   </body>
 </html>
