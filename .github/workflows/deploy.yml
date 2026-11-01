@@ -26,11 +26,6 @@ jobs:
           path: .
           node-version: 22
           package-manager: npm
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: github-pages
-          path: ./dist
 
   deploy:
     environment:
