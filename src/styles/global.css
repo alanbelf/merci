@@ -5,6 +5,7 @@
   --paper: #f5f3ed;
   --surface: #eae8df;
   --surface-raised: #fffefa;
+  --about-bg: #ebe5d8;
   --gold: #ad8c5b;
   --line: #d2cfc5;
   --contact-bg: #202b2a;
@@ -23,6 +24,7 @@
   --paper: #111a25;
   --surface: #1a2633;
   --surface-raised: #202d3a;
+  --about-bg: #202d3a;
   --gold: #c9aa78;
   --line: #35404b;
   --contact-bg: #0b121b;
@@ -67,10 +69,30 @@ h1 em, h2 em { color: var(--gold); font-weight: 400; }
 .hero-note { position: absolute; right: 7vw; bottom: 42px; font-size: .62rem; letter-spacing: .2em; }
 .section { padding: 125px 12vw; }
 .section-label { color: var(--muted); }
-.intro { display: grid; grid-template-columns: 1fr 2fr; gap: 5vw; }
+.about-heading > .section-label { color: var(--gold); }
+.about { background: var(--about-bg); transition: background-color .25s ease; }
+.about-intro { display: grid; grid-template-columns: 140px minmax(0, 1fr); gap: clamp(32px, 5vw, 72px); align-items: center; }
+.about-heading { grid-column: 2; grid-row: 1; }
+.about-heading .eyebrow { color: var(--gold); margin: 24px 0 0; }
+.about-heading h2 { margin: 14px 0; font-size: clamp(2.35rem, 4vw, 3.8rem); }
+.about-heading .lead { max-width: 470px; margin: 0; font-size: 1.15rem; }
+.about-portrait { grid-column: 1; grid-row: 1; width: 136px; aspect-ratio: 1; justify-self: center; margin: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 50%; background: var(--surface); }
+.about-portrait img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.about-story { max-width: 850px; margin: 58px auto 0; color: var(--muted); font-size: .84rem; line-height: 1.8; }
+.about-story p { margin: 0 0 18px; }
+.about-story strong { color: var(--ink); font-weight: 600; }
+.about-signature { display: flex; flex-direction: column; gap: 4px; margin-top: 32px; padding-left: 18px; border-left: 1px solid var(--gold); }
+.about-signature span:first-child { color: var(--ink); font-family: 'Playfair Display', serif; font-size: 1.05rem; }
+.about-signature span:last-child { color: var(--muted); font-size: .7rem; }
+.about-commitments { display: grid; grid-template-columns: repeat(3, 1fr); max-width: 1100px; margin: 52px auto 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.about-commitments article { padding: 20px 24px 18px 0; }
+.about-commitments article + article { padding-left: 24px; border-left: 1px solid var(--line); }
+.about-commitments h3 { margin: 0 0 7px; font-size: 1.02rem; }
+.about-commitments p { margin: 0; color: var(--muted); font-size: .75rem; line-height: 1.7; }
+.about-cta { margin-top: 34px; }
 h2 { font-size: clamp(2.7rem, 5vw, 4.5rem); margin: 20px 0 28px; }
 .lead { font-family: 'Playfair Display', serif; font-size: 1.45rem; line-height: 1.5; max-width: 650px; }
-.intro > div:last-child > p:last-child, .relocation-copy > p:not(.eyebrow) { max-width: 620px; color: var(--muted); line-height: 1.9; font-size: .92rem; }
+.relocation-copy > p:not(.eyebrow) { max-width: 620px; color: var(--muted); line-height: 1.9; font-size: .92rem; }
 .pillars { display: grid; grid-template-columns: .9fr 2fr; gap: 5vw; align-items: start; }
 .pillar-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
 .pillar-card { display: flex; flex-direction: column; align-items: flex-start; min-height: 330px; padding: 32px; border: 1px solid var(--line); background: var(--surface-raised); }
@@ -214,7 +236,16 @@ footer p { color: var(--muted); font-size: .7rem; }
   .hero { min-height: 650px; }
   .hero-content { margin-left: 7vw; }
   .section { padding: 85px 7vw; }
-  .intro, .promise, .testimonials { grid-template-columns: 1fr; gap: 35px; }
+  .about-intro { grid-template-columns: 1fr; gap: 22px; }
+  .about-heading, .about-portrait { grid-column: 1; grid-row: auto; }
+  .about-heading .eyebrow { margin-top: 20px; }
+  .about-portrait { width: 112px; justify-self: center; }
+  .about-story { margin-top: 34px; }
+  .about-commitments { grid-template-columns: 1fr; margin-top: 44px; }
+  .about-commitments article, .about-commitments article + article { padding: 20px 0; border-left: 0; }
+  .about-commitments article + article { border-top: 1px solid var(--line); }
+  .about-cta { margin-top: 28px; }
+  .promise, .testimonials { grid-template-columns: 1fr; gap: 35px; }
   .testimonial-content { grid-column: 1; }
   .pillars, .why-us { grid-template-columns: 1fr; gap: 35px; }
   .steps-grid { --steps-gap: 24px; grid-template-columns: 1fr; row-gap: var(--steps-gap); margin-top: 48px; }

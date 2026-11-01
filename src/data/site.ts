@@ -1,10 +1,10 @@
-const whatsapp = '97470722800';
 const whatsappMessage = "Hello Merci Concierge! I'd like to enquire about your services.";
 const phone = '+974 7072 2800';
+const whatsapp = phone.replaceAll(' ', '').replace('+', '');
 
 export const site = {
   name: 'Merci Concierge',
-  tagline: 'Your life in Qatar, made effortless.',
+  tagline: 'Your private access to Doha’s luxury lifestyle',
   intro: 'A personal concierge service helping you discover Qatar, settle in with confidence, and enjoy more of what matters.',
   phone,
   phoneLink: `tel:${phone.replaceAll(' ', '')}`,
