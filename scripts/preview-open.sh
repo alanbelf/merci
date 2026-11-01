@@ -9,4 +9,4 @@ if ! curl -fsS http://localhost:4321/ >/dev/null 2>&1; then
     sleep 1
   done
 fi
-open "http://localhost:4321/merci-concierge/"
+open "http://localhost:4321/merci/"

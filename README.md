@@ -28,12 +28,12 @@ npm run preview:open
 
 ## GitHub Pages deployment
 
-1. Create a GitHub repository named `merci-concierge`.
+1. Create a GitHub repository named `merci` (e.g. `https://github.com/alanbelf/merci`). The local folder is `merci_concierge`; the repository name is `merci`.
 2. Push this project to the repository's `main` branch.
-3. In `astro.config.mjs`, replace `YOUR_GITHUB_USERNAME` with the GitHub account or organisation name. Keep `base: '/merci-concierge'` if that is the repository name.
+3. In `astro.config.mjs`, set `site` to `https://alanbelf.github.io/merci/` and `base` to `/merci/` (the repository name).
 4. In GitHub, open **Settings → Pages** and set the build/deployment source to **GitHub Actions**.
 5. The included workflow is manual. Run it from **Actions → Deploy Astro site to GitHub Pages → Run workflow**.
-6. The site should be available at `https://YOUR_GITHUB_USERNAME.github.io/merci-concierge/`.
+6. The site should be available at `https://alanbelf.github.io/merci/`.
 
 GitHub Pages availability and terms depend on the repository visibility and GitHub plan. A public repository is the simplest option for a free public site.
 
