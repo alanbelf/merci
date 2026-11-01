@@ -79,6 +79,15 @@ h2 { font-size: clamp(2.7rem, 5vw, 4.5rem); margin: 20px 0 28px; }
 h3 { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 400; }
 .service-card p, .promise-grid p { color: var(--muted); font-size: .82rem; line-height: 1.8; }
 .service-card > a { position: absolute; bottom: 20px; right: 18px; font-size: 1.2rem; }
+.experience-gallery { margin-top: 68px; }
+.experience-gallery-heading { margin-bottom: 28px; }
+.experience-gallery-heading .eyebrow { color: var(--muted); }
+.experience-gallery-heading h3 { font-size: clamp(1.8rem, 3vw, 2.5rem); margin: 12px 0 0; }
+.experience-gallery-heading h3 em { color: var(--gold); font-weight: 400; }
+.experience-gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.experience-gallery figure { margin: 0; }
+.experience-gallery img { display: block; width: 100%; aspect-ratio: 1.5; object-fit: cover; }
+.experience-gallery figcaption { margin-top: 12px; color: var(--muted); font-family: 'Playfair Display', serif; font-size: 1.1rem; }
 .image-band { height: 440px; position: relative; overflow: hidden; }
 .image-band img { width: 100%; height: 100%; object-fit: cover; }
 .image-caption { position: absolute; right: 7vw; bottom: 30px; color: white; font-family: 'Playfair Display', serif; font-size: 1.4rem; }
@@ -137,6 +146,8 @@ footer p { color: var(--muted); font-size: .7rem; }
   .section-aside { padding: 0; }
   .service-grid { grid-template-columns: repeat(2, 1fr); }
   .service-card:nth-child(3) { border-left: 0; padding-left: 0; }
+  .experience-gallery-grid { grid-template-columns: 1fr; gap: 26px; }
+  .experience-gallery img { aspect-ratio: 1.6; }
   .relocation { grid-template-columns: 1fr; }
   .relocation-visual { height: 420px; }
   .quotes { grid-template-columns: 1fr; }

@@ -1,14 +1,12 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { site, tourismServices, expatServices, testimonials } from '../data/site';
-
-const photos = [
-  'photo-1539650116574-75c0c6d73f6e',
-  'photo-1518684079-3c830dcdn5c3',
-  'photo-1512632578888-169bbbc64f33'
-];
-const image = (id: string, width = 1200) =>
-  `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${width}&q=85`;
+import heroImage from '../assets/hero-qatar-lifestyle.jpg';
+import desertImage from '../assets/desert-experience.jpg';
+import hospitalityImage from '../assets/arabian-hospitality.jpg';
+import homeImage from '../assets/finding-a-home.jpg';
+import dohaImage from '../assets/discover-doha.jpg';
+import coastalImage from '../assets/coastal-luxury.jpg';
 ---
 <BaseLayout title="Merci Concierge | Your life in Qatar, made effortless" description={site.intro}>
   <header class="topbar">
@@ -28,7 +26,7 @@ const image = (id: string, width = 1200) =>
   <main id="top">
     <section class="hero">
       <div class="hero-image" role="img" aria-label="Qatar landscape">
-        <img src={image(photos[0], 2000)} alt="A view of Qatar" fetchpriority="high" />
+        <img src={heroImage.src} alt="Doha skyline and a private yacht on the waterfront at blue hour" fetchpriority="high" />
       </div>
       <div class="hero-shade"></div>
       <div class="hero-content">
@@ -69,16 +67,36 @@ const image = (id: string, width = 1200) =>
           </article>
         ))}
       </div>
+      <div class="experience-gallery">
+        <div class="experience-gallery-heading">
+          <p class="eyebrow">A CLOSER LOOK AT QATAR</p>
+          <h3>Places and moments<br /><em>to remember.</em></h3>
+        </div>
+        <div class="experience-gallery-grid">
+          <figure>
+            <img src={desertImage.src} alt="Golden dunes meet the Inland Sea at sunset, with a 4x4 on the ridge" loading="lazy" />
+            <figcaption>The Inland Sea</figcaption>
+          </figure>
+          <figure>
+            <img src={hospitalityImage.src} alt="A warmly lit desert majlis at dusk, arranged with cushions and a traditional coffee service" loading="lazy" />
+            <figcaption>A desert welcome</figcaption>
+          </figure>
+          <figure>
+            <img src={coastalImage.src} alt="A yacht deck overlooking Doha's illuminated skyline at twilight" loading="lazy" />
+            <figcaption>Doha by water</figcaption>
+          </figure>
+        </div>
+      </div>
     </section>
 
     <section class="image-band">
-      <img src={image(photos[1], 1800)} alt="Architecture and atmosphere in Qatar" loading="lazy" />
-      <div class="image-caption">A different perspective on Qatar.</div>
+      <img src={dohaImage.src} alt="Traditional Souq Waqif architecture and lanterns at early evening, with Doha's skyline beyond" loading="lazy" />
+      <div class="image-caption">Souq Waqif, as evening settles.</div>
     </section>
 
     <section class="relocation section" id="relocation">
       <div class="relocation-visual">
-        <img src={image(photos[2], 1200)} alt="Doha city and waterfront" loading="lazy" />
+        <img src={homeImage.src} alt="A warm, contemporary Doha apartment overlooking the city at sunset" loading="lazy" />
         <div class="visual-caption">FEEL AT HOME, FASTER.</div>
       </div>
       <div class="relocation-copy">
