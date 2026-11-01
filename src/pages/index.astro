@@ -161,20 +161,50 @@ import logoImage from '../assets/merci-concierge-logo.jpeg';
       <div class="testimonial-content" data-reveal>
         <p class="eyebrow">THE EXPERIENCE MATTERS</p>
         <h2>A few words<br /><em>from our clients.</em></h2>
-        {testimonials.length > 0 ? (
-          <div class="quotes">
-            {testimonials.map((item) => (
-              <blockquote>
-                <span class="quote-mark">“</span>
+      </div>
+      <div class="testimonial-summary" aria-label="5.0 on Google, 15 plus reviews">
+        <span class="summary-stars" aria-hidden="true">★★★★★</span>
+        <p><strong>5.0 on Google</strong><span aria-hidden="true"> · </span><span>15+ reviews</span></p>
+      </div>
+      <div class="quotes" role="region" aria-label="Client testimonials" tabindex="0">
+        <div class="review-track">
+          <div class="review-set">
+            {testimonials.map((item, index) => (
+              <blockquote id={`client-review-${index + 1}`} class="review-card">
+                <span class="quote-mark" aria-hidden="true">“</span>
                 <p>{item.quote}</p>
-                <cite>{item.author}</cite>
-                {item.url && <a class="review-link" href={item.url} target="_blank" rel="noopener noreferrer">View original review ↗</a>}
+                <cite>
+                  {item.url ? (
+                    <a href={item.url} target="_blank" rel="noopener noreferrer">{item.author}</a>
+                  ) : item.author}
+                </cite>
+                <svg class="review-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                  {index === 0 || index === 4 ? (
+                    <>
+                      <circle cx="35" cy="12" r="4" />
+                      <path d="M5 34c7-8 12-8 19 0s12 8 19 0M5 40c7-8 12-8 19 0s12 8 19 0" />
+                    </>
+                  ) : index === 1 || index === 5 || index === 7 ? (
+                    <>
+                      <path d="M7 39h34M11 39V20h26v19M17 20v-6h14v6M20 39V27h8v12" />
+                      <path d="M18 14V9h12v5" />
+                    </>
+                  ) : index === 2 || index === 8 ? (
+                    <>
+                      <path d="M8 24 24 11l16 13M12 22v17h24V22M20 39V28h8v11" />
+                      <path d="M24 7v4" />
+                    </>
+                  ) : (
+                    <>
+                      <circle cx="24" cy="24" r="16" />
+                      <path d="m18 30 4-10 10-4-4 10-10 4ZM24 24l4-4" />
+                    </>
+                  )}
+                </svg>
               </blockquote>
             ))}
           </div>
-        ) : (
-          <p class="small-note">Client reviews will be shared here once the original review text is available.</p>
-        )}
+        </div>
       </div>
     </section>
 

@@ -55,6 +55,124 @@ const { title = 'Merci Concierge | Qatar', description = 'Personal concierge ser
       themeButtons.forEach((button) => button.addEventListener('click', () => setTheme(button.dataset.setTheme)));
       setTheme(document.documentElement.dataset.theme || 'ivory', false);
 
+      const initTestimonialCarousel = () => {
+        const viewport = document.querySelector('.quotes');
+        const reviewTrack = viewport?.querySelector('.review-track');
+        const originalSet = reviewTrack?.querySelector('.review-set');
+        const summary = document.querySelector('.testimonial-summary');
+        const carousel = viewport?.closest('.testimonials');
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+        if (!viewport || !reviewTrack || !originalSet || !summary || !carousel || viewport.dataset.carouselEnhanced === 'true' || reducedMotion.matches) return;
+
+        const duplicateSet = originalSet.cloneNode(true);
+        duplicateSet.setAttribute('aria-hidden', 'true');
+        duplicateSet.removeAttribute('id');
+        duplicateSet.querySelectorAll('[id]').forEach((element) => element.removeAttribute('id'));
+        duplicateSet.querySelectorAll('a, button, input, select, textarea, [tabindex]').forEach((element) => element.setAttribute('tabindex', '-1'));
+        reviewTrack.append(duplicateSet);
+
+        const toggle = document.createElement('button');
+        toggle.className = 'carousel-toggle';
+        toggle.type = 'button';
+        summary.append(toggle);
+
+        let paused = false;
+        let animationFrame = 0;
+        let lastFrameTime = 0;
+        let cycleWidth = 0;
+        let position = viewport.scrollLeft;
+
+        const updateToggle = () => {
+          toggle.textContent = paused ? 'Resume' : 'Pause';
+          toggle.setAttribute('aria-label', paused ? 'Resume testimonial carousel' : 'Pause testimonial carousel');
+          carousel.dataset.carouselPaused = String(paused);
+        };
+
+        const stopAnimation = () => {
+          if (animationFrame) window.cancelAnimationFrame(animationFrame);
+          animationFrame = 0;
+          lastFrameTime = 0;
+        };
+
+        const pause = (manual = false) => {
+          paused = true;
+          position = viewport.scrollLeft;
+          stopAnimation();
+          if (manual) viewport.dataset.manual = 'true';
+          updateToggle();
+        };
+
+        const animate = (time) => {
+          if (paused || !viewport.isConnected) {
+            stopAnimation();
+            return;
+          }
+
+          if (lastFrameTime) {
+            const elapsed = Math.min(time - lastFrameTime, 50);
+            position += elapsed * 0.012;
+            if (position >= cycleWidth) position -= cycleWidth;
+            viewport.scrollLeft = position;
+          }
+          lastFrameTime = time;
+          animationFrame = window.requestAnimationFrame(animate);
+        };
+
+        const resume = () => {
+          if (reducedMotion.matches) return;
+          paused = false;
+          position = viewport.scrollLeft;
+          viewport.removeAttribute('data-manual');
+          updateToggle();
+          if (!animationFrame) animationFrame = window.requestAnimationFrame(animate);
+        };
+
+        const setInteracting = (interacting) => {
+          carousel.dataset.carouselInteracting = String(interacting);
+        };
+
+        const measureCycle = () => {
+          const trackStyle = window.getComputedStyle(reviewTrack);
+          const gap = Number.parseFloat(trackStyle.gap) || 0;
+          cycleWidth = originalSet.getBoundingClientRect().width + gap;
+        };
+
+        toggle.addEventListener('click', () => paused ? resume() : pause());
+        viewport.addEventListener('pointerenter', () => setInteracting(true));
+        viewport.addEventListener('pointerleave', () => { carousel.dataset.carouselInteracting = 'false'; });
+        carousel.addEventListener('focusin', () => setInteracting(true));
+        carousel.addEventListener('focusout', (event) => {
+          if (!carousel.contains(event.relatedTarget)) carousel.dataset.carouselInteracting = 'false';
+        });
+        viewport.addEventListener('click', (event) => {
+          if (event.target.closest('.carousel-toggle')) return;
+          pause(true);
+        });
+        viewport.addEventListener('scroll', () => {
+          if (paused) position = viewport.scrollLeft;
+        }, { passive: true });
+        const handleReducedMotionChange = (event) => {
+          if (event.matches) pause(true);
+        };
+        reducedMotion.addEventListener('change', handleReducedMotionChange);
+        window.addEventListener('resize', measureCycle);
+
+        carousel.classList.add('carousel-enhanced');
+        viewport.dataset.carouselEnhanced = 'true';
+        measureCycle();
+        updateToggle();
+        animationFrame = window.requestAnimationFrame(animate);
+        document.addEventListener('astro:before-swap', () => {
+          stopAnimation();
+          window.removeEventListener('resize', measureCycle);
+          reducedMotion.removeEventListener('change', handleReducedMotionChange);
+        }, { once: true });
+      };
+
+      initTestimonialCarousel();
+      document.addEventListener('astro:page-load', initTestimonialCarousel);
+
       let revealObserver;
       const initScrollReveals = () => {
         revealObserver?.disconnect();
