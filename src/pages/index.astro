@@ -7,10 +7,13 @@ import hospitalityImage from '../assets/arabian-hospitality.jpg';
 import homeImage from '../assets/finding-a-home.jpg';
 import dohaImage from '../assets/discover-doha.jpg';
 import coastalImage from '../assets/coastal-luxury.jpg';
+import logoImage from '../assets/merci-concierge-logo.jpeg';
 ---
 <BaseLayout title="Merci Concierge | Your life in Qatar, made effortless" description={site.intro}>
   <header class="topbar">
-    <a class="wordmark" href="#top">merci<span>.</span></a>
+    <a class="header-logo-link" href="#top" aria-label="Merci Concierge home">
+      <img class="header-logo" src={logoImage.src} alt="Merci Concierge — Doha · Paris" />
+    </a>
     <nav aria-label="Main navigation">
       <a href="#about">About</a>
       <a href="#services">Services</a>
@@ -167,7 +170,9 @@ import coastalImage from '../assets/coastal-luxury.jpg';
   </main>
 
   <footer>
-    <a class="wordmark" href="#top">merci<span>.</span></a>
+    <a class="footer-logo-link" href="#top" aria-label="Merci Concierge home">
+      <img class="footer-logo" src={logoImage.src} alt="Merci Concierge — Doha · Paris" loading="lazy" />
+    </a>
     <p>Thoughtful concierge services in Qatar.</p>
     <p>© {new Date().getFullYear()} Merci Concierge</p>
   </footer>
