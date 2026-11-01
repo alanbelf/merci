@@ -1,6 +1,6 @@
-const whatsapp = '97466997487';
+const whatsapp = '97470722800';
 const whatsappMessage = "Hello Merci Concierge! I'd like to enquire about your services.";
-const phone = '+974 6699 7487';
+const phone = '+974 7072 2800';
 
 export const site = {
   name: 'Merci Concierge',

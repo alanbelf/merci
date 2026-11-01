@@ -8,7 +8,7 @@ Maintain a polished, simple marketing website for a one-person concierge busines
 - Keep the site static. Do not add databases, accounts, forms requiring a backend, analytics, or paid services without explicit approval.
 - Edit business copy and contact details in `src/data/site.ts` where possible.
 - Never invent phone numbers, email addresses, prices, service promises, client names, testimonials, review counts, ratings, or credentials.
-- Use the official WhatsApp number `+974 6699 7487`; keep contact details centralised in `src/data/site.ts`.
+- Use the official WhatsApp number `+974 7072 2800`; keep contact details centralised in `src/data/site.ts`.
 - Preserve genuine testimonials exactly as supplied, including reviewer names and original review links. Never invent or paraphrase customer reviews.
 - Do not publish private client information.
 - Use only images supplied by the owner or images whose usage rights are clear. Do not assume a random online image is licensed for commercial use.
