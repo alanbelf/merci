@@ -13,12 +13,19 @@ const { title = 'Merci Concierge | Qatar', description = 'Personal concierge ser
     <meta name="theme-color" content="#172323" />
     <link rel="icon" type="image/png" href={favicon.src} />
     <script is:inline>
+      const getSystemTheme = () => {
+        try {
+          return window.matchMedia('(prefers-color-scheme: light)').matches ? 'ivory' : 'midnight';
+        } catch {
+          return 'midnight';
+        }
+      };
+      let initialTheme = getSystemTheme();
       try {
         const savedTheme = localStorage.getItem('merci-theme');
-        document.documentElement.dataset.theme = savedTheme === 'midnight' ? 'midnight' : 'ivory';
-      } catch {
-        document.documentElement.dataset.theme = 'ivory';
-      }
+        if (savedTheme === 'ivory' || savedTheme === 'midnight') initialTheme = savedTheme;
+      } catch {}
+      document.documentElement.dataset.theme = initialTheme;
     </script>
     <title>{title}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -53,7 +60,7 @@ const { title = 'Merci Concierge | Qatar', description = 'Personal concierge ser
         }
       };
       themeButtons.forEach((button) => button.addEventListener('click', () => setTheme(button.dataset.setTheme)));
-      setTheme(document.documentElement.dataset.theme || 'ivory', false);
+      setTheme(document.documentElement.dataset.theme || 'midnight', false);
 
       const initTestimonialCarousel = () => {
         const viewport = document.querySelector('.quotes');

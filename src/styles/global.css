@@ -46,7 +46,8 @@ nav { display: flex; align-items: center; gap: 2.3rem; font-size: .78rem; }
 nav a { transition: opacity .2s; }
 nav a:hover { opacity: .72; }
 .theme-switcher { display: flex; align-items: center; gap: 4px; padding: 4px; border: 1px solid var(--line); border-radius: 3px; }
-.theme-switcher button { display: inline-flex; align-items: center; gap: 5px; border: 0; background: transparent; color: var(--muted); padding: 6px 8px; border-radius: 2px; font-size: .68rem; cursor: pointer; }
+.theme-switcher button { display: inline-grid; width: 32px; height: 30px; place-items: center; border: 0; background: transparent; color: var(--muted); padding: 0; border-radius: 2px; cursor: pointer; }
+.theme-switcher button svg { display: block; width: 16px; height: 16px; }
 .theme-switcher button[aria-pressed='true'] { background: var(--surface); color: var(--ink); }
 .nav-cta { border: 1px solid var(--ink); padding: 12px 18px; }
 .hero { min-height: 680px; height: min(82vh, 850px); position: relative; color: white; display: flex; align-items: center; overflow: hidden; }
@@ -231,8 +232,7 @@ footer p { color: var(--muted); font-size: .7rem; }
   nav > a:nth-child(1), nav > a:nth-child(3) { display: none; }
   .nav-cta { padding: 10px 12px; }
   .theme-switcher { gap: 2px; }
-  .theme-switcher button { padding: 6px 7px; font-size: .9rem; }
-  .theme-switcher button span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
+  .theme-switcher button { width: 32px; height: 30px; }
   .hero { min-height: 650px; }
   .hero-content { margin-left: 7vw; }
   .section { padding: 85px 7vw; }
@@ -272,7 +272,7 @@ footer p { color: var(--muted); font-size: .7rem; }
   nav > a { font-size: .62rem; }
   .header-logo-link, .header-logo { width: 58px; height: 58px; flex-basis: 58px; }
   .theme-switcher { padding: 2px; }
-  .theme-switcher button { padding: 6px; }
+  .theme-switcher button { width: 30px; height: 30px; }
   .nav-cta { padding: 9px 10px; font-size: .6rem; }
   .service-grid { grid-template-columns: 1fr; }
   .service-card, .service-card + .service-card { border-left: 0; padding-left: 0; min-height: 190px; }
