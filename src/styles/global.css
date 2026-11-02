@@ -215,10 +215,16 @@ h3 { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 40
 .contact-details { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; border-top: 1px solid var(--line); margin-top: 90px; padding-top: 25px; }
 .contact-details span { color: var(--gold); display: block; font-size: .6rem; letter-spacing: .15em; margin-bottom: 12px; }
 .contact-details a, .contact-details p { font-size: .8rem; color: var(--contact-text); margin: 0; }
-footer { display: flex; justify-content: space-between; align-items: center; padding: 30px 7vw; background: var(--paper); transition: background-color .25s ease; }
-footer .footer-logo-link { display: block; flex: 0 0 84px; line-height: 0; }
+footer { display: grid; grid-template-columns: 84px minmax(160px, 1fr) auto auto; column-gap: clamp(18px, 3vw, 42px); align-items: center; padding: 30px 7vw; background: var(--paper); transition: background-color .25s ease; }
+footer .footer-logo-link { display: block; line-height: 0; }
 footer .footer-logo { display: block; width: 84px; height: 84px; object-fit: cover; background: #000; }
-footer p { color: var(--muted); font-size: .7rem; }
+footer > p { margin: 0; color: var(--muted); font-size: .7rem; }
+.footer-social { display: grid; gap: 4px; }
+.footer-social > p { margin: 0; color: var(--gold); font-size: .6rem; letter-spacing: .14em; text-transform: uppercase; }
+.footer-social-links { display: flex; gap: 8px; }
+.footer-social-links a { display: inline-flex; min-width: 44px; min-height: 44px; align-items: center; justify-content: center; gap: 7px; padding: 0 8px; color: var(--ink); font-size: .72rem; transition: color .2s, transform .2s; }
+.footer-social-links a:hover { color: var(--gold); transform: translateY(-2px); }
+.footer-social-links svg { display: block; width: 19px; height: 19px; flex: 0 0 19px; }
 .whatsapp-float, .mobile-contact-bar { display: none; }
 @media (min-width: 801px) {
   .whatsapp-float { display: grid; position: fixed; z-index: 20; right: 28px; bottom: 28px; width: 58px; height: 58px; place-items: center; border-radius: 50%; color: white; background: #187b58; box-shadow: 0 5px 20px #0003; transition: transform .2s, background-color .2s; }
@@ -261,7 +267,9 @@ footer p { color: var(--muted); font-size: .7rem; }
   .review-card { flex-basis: min(88vw, 440px); padding: 24px 24px 68px; }
   .contact { padding: 85px 7vw 55px; }
   .contact-details { grid-template-columns: 1fr; gap: 25px; margin-top: 55px; }
-  footer { flex-wrap: wrap; gap: 12px; padding: 25px 7vw; }
+  footer { grid-template-columns: 84px minmax(0, 1fr); column-gap: 20px; row-gap: 12px; padding: 25px 7vw; }
+  .footer-social { grid-column: 1 / -1; border-top: 1px solid var(--line); padding-top: 12px; }
+  footer > p:last-child { grid-column: 1 / -1; text-align: right; }
   .mobile-contact-bar { display: flex; position: fixed; z-index: 30; left: 0; right: 0; bottom: 0; gap: 1px; padding: 8px 7vw calc(8px + env(safe-area-inset-bottom)); background: var(--contact-bg); color: var(--contact-text); box-shadow: 0 -4px 18px #0002; }
   .mobile-contact-bar a { display: flex; flex: 1; align-items: center; justify-content: center; gap: 9px; min-height: 48px; color: white; background: #187b58; font-size: .82rem; }
   .mobile-contact-bar a + a { background: var(--surface); color: var(--ink); }
