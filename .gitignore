@@ -7,3 +7,4 @@ dist/
 scripts/.last-approved-sha
 scripts/.last-published-sha
 scripts/.previous-published-sha
+.agents/

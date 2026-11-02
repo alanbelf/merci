@@ -5,7 +5,7 @@ const whatsapp = phone.replaceAll(' ', '').replace('+', '');
 export const site = {
   name: 'Merci Concierge',
   tagline: 'Your private access to Doha’s luxury lifestyle',
-  intro: 'A personal concierge service helping you discover Qatar, settle in with confidence, and enjoy more of what matters.',
+  intro: 'I help you discover Qatar, settle in with confidence, and enjoy more of what matters to you.',
   phone,
   phoneLink: `tel:${phone.replaceAll(' ', '')}`,
   whatsapp,
@@ -17,7 +17,7 @@ export const site = {
 export const tourismServices = [
   {
     title: 'Discover Qatar',
-    description: 'Thoughtfully planned experiences to discover the culture, places and hidden gems of Qatar.'
+    description: 'Explore Qatar’s culture, places and hidden gems through experiences planned around your interests.'
   },
   {
     title: 'Tailor-made itineraries',
@@ -44,7 +44,7 @@ export const expatServices = [
   },
   {
     title: 'Family support',
-    description: 'Guidance to help families navigate their new environment and settle in.'
+    description: 'Guidance for families as they get to know their new surroundings and settle in.'
   },
   {
     title: 'Your local contact',
