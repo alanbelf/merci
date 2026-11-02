@@ -9,6 +9,12 @@ import dohaImage from '../assets/discover-doha.jpg';
 import coastalImage from '../assets/coastal-luxury.jpg';
 import logoImage from '../assets/merci-concierge-logo.jpeg';
 import nassimPortrait from '../assets/nassim-portrait.jpg';
+
+const getQuoteParts = (quote: string) => {
+  if (quote.length <= 350) return { preview: quote, remainder: '' };
+  const splitAt = quote.lastIndexOf(' ', 350);
+  return { preview: quote.slice(0, splitAt), remainder: quote.slice(splitAt) };
+};
 ---
 <BaseLayout title="Merci Concierge | Your private access to Doha’s luxury lifestyle" description={site.intro}>
   <header class="topbar">
@@ -82,9 +88,14 @@ import nassimPortrait from '../assets/nassim-portrait.jpg';
           <img src={nassimPortrait.src} alt="Nassim, founder of Merci Concierge" width="200" height="200" loading="lazy" decoding="async" />
         </figure>
       </div>
-      <div class="about-story" data-reveal>
+      <div class="about-story about-preview" data-reveal>
         <p>I’m a French expat and family man who chose to make Qatar home. After travelling around the world, I fell in love with its sunshine, family-friendly atmosphere, and relaxed way of life. It felt like the right place to settle with my family.</p>
         <p>Over the years, I’ve built relationships here and learned how to navigate the everyday details that can feel unfamiliar when you arrive. Finding a home, arranging a car, planning a desert escape, or bringing people together for an event: knowing where to turn can make all the difference.</p>
+      </div>
+      <details class="about-more" open>
+        <summary>Read Nassim’s full story</summary>
+        <div class="about-more-content">
+        <div class="about-story" data-reveal>
         <p>Merci Concierge brings that experience and local network together with a personal approach. I start by listening to what you need, what matters to you, and what budget you’re comfortable with. From there, I look for options that genuinely fit, rather than asking you to fit into a ready-made package.</p>
         <p><strong>Your interests come first.</strong> No relationship with a supplier takes priority over your needs. I believe in honest recommendations, clear communication, and fees that are explained and agreed upfront, with no hidden charges.</p>
         <p>Away from work, I enjoy football, good food, and spending time with my family. That’s part of what I appreciate about life here, and what I hope to help you enjoy too, whether you’re visiting Qatar or making it your home.</p>
@@ -108,6 +119,8 @@ import nassimPortrait from '../assets/nassim-portrait.jpg';
         </article>
       </div>
       <a class="button button-dark about-cta" href={site.whatsappUrl} target="_blank" rel="noopener noreferrer">Tell me what you have in mind <span>↗</span></a>
+        </div>
+      </details>
     </section>
 
     <section class="services section" id="services">
@@ -178,71 +191,6 @@ import nassimPortrait from '../assets/nassim-portrait.jpg';
       </div>
     </section>
 
-    <section class="promise section">
-      <div class="section-label" data-reveal>THE MERCI DIFFERENCE</div>
-      <div data-reveal>
-        <p class="eyebrow">PERSONAL BY NATURE</p>
-        <h2>Thoughtful details.<br /><em>Human connection.</em></h2>
-        <div class="promise-grid">
-          <div data-reveal data-reveal-delay="0"><span>01</span><h3>Personal attention</h3><p>Your needs shape the support I offer.</p></div>
-          <div data-reveal data-reveal-delay="1"><span>02</span><h3>Local perspective</h3><p>Useful insight to help you make informed choices.</p></div>
-          <div data-reveal data-reveal-delay="2"><span>03</span><h3>Care in the details</h3><p>Thoughtful support from our first conversation onward.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="testimonials section">
-      <div class="section-label" data-reveal>KIND WORDS</div>
-      <div class="testimonial-content" data-reveal>
-        <p class="eyebrow">THE EXPERIENCE MATTERS</p>
-        <h2>A few words<br /><em>from our clients.</em></h2>
-      </div>
-      <div class="testimonial-summary" aria-label="5.0 on Google, 15 plus reviews">
-        <span class="summary-stars" aria-hidden="true">★★★★★</span>
-        <p><strong>5.0 on Google</strong><span aria-hidden="true"> · </span><span>15+ reviews</span></p>
-      </div>
-      <div class="quotes" role="region" aria-label="Client testimonials" tabindex="0">
-        <div class="review-track">
-          <div class="review-set">
-            {testimonials.map((item, index) => (
-              <blockquote id={`client-review-${index + 1}`} class="review-card">
-                <span class="quote-mark" aria-hidden="true">“</span>
-                <p>{item.quote}</p>
-                <cite>
-                  {item.url ? (
-                    <a href={item.url} target="_blank" rel="noopener noreferrer">{item.author}</a>
-                  ) : item.author}
-                </cite>
-                <svg class="review-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-                  {index === 0 || index === 4 ? (
-                    <>
-                      <circle cx="35" cy="12" r="4" />
-                      <path d="M5 34c7-8 12-8 19 0s12 8 19 0M5 40c7-8 12-8 19 0s12 8 19 0" />
-                    </>
-                  ) : index === 1 || index === 5 || index === 7 ? (
-                    <>
-                      <path d="M7 39h34M11 39V20h26v19M17 20v-6h14v6M20 39V27h8v12" />
-                      <path d="M18 14V9h12v5" />
-                    </>
-                  ) : index === 2 || index === 8 ? (
-                    <>
-                      <path d="M8 24 24 11l16 13M12 22v17h24V22M20 39V28h8v11" />
-                      <path d="M24 7v4" />
-                    </>
-                  ) : (
-                    <>
-                      <circle cx="24" cy="24" r="16" />
-                      <path d="m18 30 4-10 10-4-4 10-10 4ZM24 24l4-4" />
-                    </>
-                  )}
-                </svg>
-              </blockquote>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-
     <section class="why-us section">
       <div class="why-us-heading" data-reveal>
         <div class="section-label">WHY MERCI</div>
@@ -270,6 +218,40 @@ import nassimPortrait from '../assets/nassim-portrait.jpg';
           <h3>5 stars on Google</h3>
           <p>Rated 5 stars across 18 Google reviews.</p>
         </article>
+      </div>
+    </section>
+
+    <section class="testimonials section">
+      <div class="section-label" data-reveal>KIND WORDS</div>
+      <div class="testimonial-content" data-reveal>
+        <p class="eyebrow">THE EXPERIENCE MATTERS</p>
+        <h2>A few words<br /><em>from our clients.</em></h2>
+      </div>
+      <div class="testimonial-summary" aria-label="5.0 on Google, 15 plus reviews">
+        <span class="summary-stars" aria-hidden="true">★★★★★</span>
+        <p><strong>5.0 on Google</strong><span aria-hidden="true"> · </span><span>15+ reviews</span></p>
+      </div>
+      <div class="quotes" role="region" aria-label="Client testimonials" tabindex="0">
+        <div class="review-track">
+          <div class="review-set">
+            {testimonials.map((item, index) => {
+              const { preview, remainder } = getQuoteParts(item.quote);
+              const remainderId = `review-more-${index + 1}`;
+              return (
+                <blockquote id={`client-review-${index + 1}`} class="review-card">
+                  <span class="quote-mark" aria-hidden="true">“</span>
+                  <p>{preview}<span id={remainderId} class="review-remainder" hidden>{remainder}</span></p>
+                  {remainder && <button class="review-more-toggle" type="button" aria-expanded="false" aria-controls={remainderId}>Read more</button>}
+                  <cite>
+                    {item.url ? (
+                      <a href={item.url} target="_blank" rel="noopener noreferrer">{item.author}</a>
+                    ) : item.author}
+                  </cite>
+                </blockquote>
+              );
+            })}
+          </div>
+        </div>
       </div>
     </section>
 

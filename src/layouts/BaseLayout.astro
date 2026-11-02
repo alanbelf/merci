@@ -48,6 +48,23 @@ const { title = 'Merci Concierge | Qatar', description = 'Personal concierge ser
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.6 4.1 1.6 5.9L0 24l6.5-1.7a11.8 11.8 0 0 0 5.6 1.4h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.2-1.2-6.1-3.5-8.4ZM12.1 21.7c-1.7 0-3.4-.5-4.8-1.3l-.3-.2-3.9 1 1-3.8-.2-.3a9.8 9.8 0 1 1 8.2 4.6Zm5.4-7.3c-.3-.2-1.7-.9-2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7.1a8 8 0 0 1-2.4-1.5 9 9 0 0 1-1.7-2.1c-.2-.3 0-.5.1-.7l.5-.6.3-.5c.1-.2 0-.4 0-.6l-.9-2.1c-.2-.5-.5-.4-.7-.4h-.6c-.2 0-.6.1-.9.4s-1.2 1.2-1.2 2.8 1.2 3.2 1.4 3.4c.2.2 2.4 3.7 5.8 5 .8.3 1.4.5 1.9.6.8.2 1.5.2 2 .1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4s-.2-.3-.5-.4Z"/></svg>
     </a>
     <script is:inline>
+      const aboutDisclosure = document.querySelector('.about-more');
+      if (aboutDisclosure) {
+        const aboutSummary = aboutDisclosure.querySelector('summary');
+        const mobileLayout = window.matchMedia('(max-width: 800px)');
+        const syncAboutDisclosure = () => {
+          aboutDisclosure.open = !mobileLayout.matches || aboutDisclosure.open;
+          if (mobileLayout.matches && !aboutDisclosure.dataset.initialized) aboutDisclosure.open = false;
+          aboutDisclosure.dataset.initialized = 'true';
+          aboutSummary.textContent = aboutDisclosure.open ? 'Show less' : 'Read Nassim’s full story';
+        };
+        syncAboutDisclosure();
+        mobileLayout.addEventListener('change', syncAboutDisclosure);
+        aboutDisclosure.addEventListener('toggle', () => {
+          aboutSummary.textContent = aboutDisclosure.open ? 'Show less' : 'Read Nassim’s full story';
+        });
+      }
+
       const themeButtons = document.querySelectorAll('[data-set-theme]');
       const setTheme = (theme, save = true) => {
         document.documentElement.dataset.theme = theme;
@@ -76,6 +93,7 @@ const { title = 'Merci Concierge | Qatar', description = 'Personal concierge ser
         duplicateSet.setAttribute('aria-hidden', 'true');
         duplicateSet.removeAttribute('id');
         duplicateSet.querySelectorAll('[id]').forEach((element) => element.removeAttribute('id'));
+        duplicateSet.querySelectorAll('[aria-controls]').forEach((element) => element.removeAttribute('aria-controls'));
         duplicateSet.querySelectorAll('a, button, input, select, textarea, [tabindex]').forEach((element) => element.setAttribute('tabindex', '-1'));
         reviewTrack.append(duplicateSet);
 
@@ -148,11 +166,24 @@ const { title = 'Merci Concierge | Qatar', description = 'Personal concierge ser
         toggle.addEventListener('click', () => paused ? resume() : pause());
         viewport.addEventListener('pointerenter', () => setInteracting(true));
         viewport.addEventListener('pointerleave', () => { carousel.dataset.carouselInteracting = 'false'; });
+        viewport.addEventListener('pointerdown', (event) => {
+          if (!event.target.closest('.carousel-toggle')) pause(true);
+        });
         carousel.addEventListener('focusin', () => setInteracting(true));
         carousel.addEventListener('focusout', (event) => {
           if (!carousel.contains(event.relatedTarget)) carousel.dataset.carouselInteracting = 'false';
         });
         viewport.addEventListener('click', (event) => {
+          const moreToggle = event.target.closest('.review-more-toggle');
+          if (moreToggle) {
+            const remainder = moreToggle.closest('.review-card')?.querySelector('.review-remainder');
+            if (remainder) {
+              const expanded = moreToggle.getAttribute('aria-expanded') !== 'true';
+              remainder.hidden = !expanded;
+              moreToggle.setAttribute('aria-expanded', String(expanded));
+              moreToggle.textContent = expanded ? 'Read less' : 'Read more';
+            }
+          }
           if (event.target.closest('.carousel-toggle')) return;
           pause(true);
         });
