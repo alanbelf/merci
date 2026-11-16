@@ -1,6 +1,8 @@
 import { defineConfig } from 'astro/config';
 
+const isPages = process.env.DEPLOY_TARGET === 'pages';
+
 export default defineConfig({
-  site: 'https://alanbelf.github.io/merci/',
-  base: '/merci/'
+  site: isPages ? 'https://alanbelf.github.io/merci/' : 'https://merciconcierge.com',
+  base: isPages ? '/merci/' : '/',
 });
