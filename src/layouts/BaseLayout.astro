@@ -51,17 +51,12 @@ const { title = 'Merci Concierge | Qatar', description = 'Personal concierge ser
       const aboutDisclosure = document.querySelector('.about-more');
       if (aboutDisclosure) {
         const aboutSummary = aboutDisclosure.querySelector('summary');
-        const mobileLayout = window.matchMedia('(max-width: 800px)');
-        const syncAboutDisclosure = () => {
-          aboutDisclosure.open = !mobileLayout.matches || aboutDisclosure.open;
-          if (mobileLayout.matches && !aboutDisclosure.dataset.initialized) aboutDisclosure.open = false;
-          aboutDisclosure.dataset.initialized = 'true';
+        const updateAboutSummary = () => {
           aboutSummary.textContent = aboutDisclosure.open ? 'Show less' : 'Read Nassim’s full story';
         };
-        syncAboutDisclosure();
-        mobileLayout.addEventListener('change', syncAboutDisclosure);
+        updateAboutSummary();
         aboutDisclosure.addEventListener('toggle', () => {
-          aboutSummary.textContent = aboutDisclosure.open ? 'Show less' : 'Read Nassim’s full story';
+          updateAboutSummary();
         });
       }
 
