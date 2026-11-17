@@ -1,6 +1,12 @@
 name: Deploy to Hostinger
 
 on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - "README.md"
+      - "AGENTS.md"
+      - "scripts/**"
   workflow_dispatch:
     inputs:
       dry_run:
@@ -11,6 +17,7 @@ on:
 permissions:
   contents: read
 
+# One deployment at a time; never cancel an upload that is already running.
 concurrency:
   group: hostinger-deploy
   cancel-in-progress: false
@@ -18,14 +25,24 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
+
       - run: npm ci
-      - run: npm run build
+
+      # If any check or the build fails, nothing is uploaded.
+      - name: Validate
+        run: npm run check:all
+
+      - name: Build
+        run: npm run build
+
       - name: Upload dist/ to Hostinger
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
@@ -35,4 +52,5 @@ jobs:
           protocol: ftps
           local-dir: ./dist/
           server-dir: ./domains/merciconcierge.com/public_html/
-          dry-run: ${{ inputs.dry_run }}
+          # Pushes always deploy for real. Manual runs default to a dry run.
+          dry-run: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run }}
