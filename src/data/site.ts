@@ -24,7 +24,7 @@ export const tourismServices = [
     description: 'Personalised plans shaped around your interests, pace and the kind of experience you want.'
   },
   {
-    title: 'Experience booking',
+    title: 'Restaurant & experience bookings',
     description: 'Recommendations and booking assistance for memorable moments during your stay.'
   },
   {

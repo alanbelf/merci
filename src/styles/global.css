@@ -82,7 +82,7 @@ h1 em, h2 em { color: var(--gold); font-weight: 400; }
 .about-story { max-width: 850px; margin: 58px auto 0; color: var(--muted); font-size: .84rem; line-height: 1.8; }
 .about-story p { margin: 0 0 18px; }
 .about-story strong { color: var(--ink); font-weight: 600; }
-.about-more > summary { display: list-item; width: fit-content; margin: 12px 0 0; padding: 12px 0; color: var(--ink); border-bottom: 1px solid var(--gold); font-size: .82rem; cursor: pointer; }
+.about-more > summary { display: none; }
 .about-signature { display: flex; flex-direction: column; gap: 4px; margin-top: 32px; padding-left: 18px; border-left: 1px solid var(--gold); }
 .about-signature span:first-child { color: var(--ink); font-family: 'Playfair Display', serif; font-size: 1.05rem; }
 .about-signature span:last-child { color: var(--muted); font-size: .7rem; }
@@ -247,6 +247,7 @@ footer > p { margin: 0; color: var(--muted); font-size: .7rem; }
   .about-portrait { width: 100px; justify-self: center; }
   .about-story { margin-top: 26px; }
   .about-story p { margin-bottom: 14px; }
+  .about-more > summary { display: list-item; width: fit-content; margin: 12px 0 0; padding: 12px 0; color: var(--ink); border-bottom: 1px solid var(--gold); font-size: .82rem; cursor: pointer; }
   .about-more-content > .about-story { margin-top: 24px; }
   .about-commitments { grid-template-columns: 1fr; margin-top: 34px; }
   .about-commitments article, .about-commitments article + article { padding: 16px 0; border-left: 0; }
